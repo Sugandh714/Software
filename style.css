@@ -1,73 +1,195 @@
 header {
     background: #333;
     color: #fff;
-    padding: 10px 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    /* Center logo and navigation vertically */
+    justify-content: space-between;
+    /* Space between logo and navigation menu */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 70px;
+    /* Logo height */
+    width: auto;
+    margin-right: 15px;
+}
+
+header .logo span {
+    font-size: 24px;
+    /* Increase font size for "IT Company" */
+    font-family: 'Arial', sans-serif;
+    /* Change font style */
+    font-weight: bold;
+    color: #ffcc00;
+    /* Optional: Add some color for emphasis */
+}
+
+/* Navigation menu */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    /* Ensures logo and nav menu are separated */
+    width: 100%;
 }
 
 header nav ul {
     display: flex;
     justify-content: flex-end;
-    /* Align items to the right */
+    /* Aligns menu items to the right */
     list-style: none;
     margin: 0;
     padding: 0;
+    flex-grow: 1;
+    /* Pushes the menu to the right */
 }
 
 header nav ul li {
     margin-left: 20px;
-    /* Add some spacing between tabs */
+    /* Adds space between menu items */
 }
 
 header nav ul li a {
     color: white;
     text-decoration: none;
     padding: 5px 10px;
+    font-size: 18px;
     transition: background 0.3s ease;
 }
 
 header nav ul li a:hover {
     background: #555;
-    /* Add a hover effect */
     border-radius: 5px;
 }
 
 .image-container {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120vh;
-    /* Increased height for better visibility */
+    width: 100%;
+    /* Spread image across the full width */
+    height: 90vh;
+    /* Adjust height as needed */
     overflow: hidden;
-    margin-top: 20px;
-    /* Adds space from the top */
 }
 
 .image-container img {
     width: 100%;
-    /* Stretch the image to fit the container's width */
-    height: auto;
-    /* Maintain aspect ratio to avoid cutting */
+    /* Stretch image to fit container width */
+    height: 100%;
+    /* Stretch image to fit container height */
     object-fit: cover;
-    /* Ensures the image covers the container */
+    /* Ensure the image covers the container */
 }
 
 .welcome-message {
     position: absolute;
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
     color: white;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent background for readability */
     padding: 20px;
     border-radius: 10px;
 }
 
 .welcome-message h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 0;
 }
 
 .welcome-message p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 10px;
+}
+
+.dynamic-shape-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 15px;
+    /* Smooth rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    /* Soft shadow for depth */
+    transform: rotateY(0deg);
+    /* Initial 3D perspective */
+    animation: smoothTransform 6s infinite alternate ease-in-out;
+}
+
+.dynamic-shape-image {
+    width: 80%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
+    /* Rounded image corners */
+    transition: transform 0.6s ease-in-out, box-shadow 0.3s ease;
+    animation: imageAnimate 6s infinite alternate ease-in-out;
+}
+
+/* Smooth transformation animation */
+@keyframes smoothTransform {
+    0% {
+        transform: rotateY(0deg) scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        transform: rotateY(15deg) scale(1.05);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    100% {
+        transform: rotateY(0deg) scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Subtle image hover effect to create a 'pop' feel */
+@keyframes imageAnimate {
+    0% {
+        transform: rotate(0deg) scale(1);
+        filter: brightness(100%) saturate(100%);
+    }
+
+    25% {
+        transform: rotate(3deg) scale(1.02);
+        filter: brightness(110%) saturate(120%);
+    }
+
+    50% {
+        transform: rotate(-3deg) scale(1.05);
+        filter: brightness(120%) saturate(130%);
+    }
+
+    75% {
+        transform: rotate(3deg) scale(1.02);
+        filter: brightness(110%) saturate(120%);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        filter: brightness(100%) saturate(100%);
+    }
+}
+
+.dynamic-shape-container:hover .dynamic-shape-image {
+    transform: scale(1.1) rotate(5deg);
+    /* Slight scaling on hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow on hover */
+}
+
+html {
+    scroll-behavior: smooth;
 }

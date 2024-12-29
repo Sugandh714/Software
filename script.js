@@ -1,16 +1,17 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll("nav a").forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    target.scrollIntoView({ behavior: "smooth" });
-  });
-});
+window.onload = function () {
+  // Load content for each section
+  loadSection("about.html", "#about");
+  loadSection("services.html", "#services");
+  loadSection("contact.html", "#contact");
+};
 
-// Handle form submission
-const form = document.querySelector("form");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert("Thank you for contacting us!");
-  form.reset();
-});
+function loadSection(file, sectionId) {
+  fetch(file)
+    .then((response) => response.text())
+    .then((data) => {
+      document.querySelector(sectionId).innerHTML = data;
+    })
+    .catch((error) => {
+      console.error("Error loading section:", error);
+    });
+}
